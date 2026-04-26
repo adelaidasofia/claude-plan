@@ -1,10 +1,10 @@
 ---
 name: plan
-description: Temporal Agency skill that moves your to-dos into Google Calendar as time-boxed blocks, protects biological anchors (sleep, exercise, meals) first, separates maker from manager time, and tracks scheduled-vs-shipped as a credibility scorecard. Four modes — /plan week (Sunday planning), /plan morning (daily forward briefing + gratitude), /plan review (Friday scorecard + closure), /plan touch (reactive when a meeting request lands mid-day). Trigger when the user says /plan, "plan my week," "what's my day," "review the week," or when a new meeting request arrives and they ask whether to accept.
-argument-hint: "[week | morning | review | touch] — omit to be asked"
+description: Temporal Agency skill that moves your to-dos into Google Calendar as time-boxed blocks, protects biological anchors (sleep, exercise, meals) first, separates maker from manager time, and tracks scheduled-vs-shipped as a credibility scorecard. Four modes: /plan week (Sunday planning), /plan morning (daily forward briefing + gratitude), /plan review (Friday scorecard + closure), /plan touch (reactive when a meeting request lands mid-day). Trigger when the user says /plan, "plan my week," "what's my day," "review the week," or when a new meeting request arrives and they ask whether to accept.
+argument-hint: "[week | morning | review | touch], omit to be asked"
 ---
 
-# /plan — Temporal Agency
+# /plan: Temporal Agency
 
 A forcing function that moves planning from list-mode to calendar-mode. Reads from your to-do files, Google Calendar, and (optionally) journal/state signals. Writes calendar events with explicit human-in-the-loop approval, enforcing biological anchors first, maker blocks second, manager clusters third.
 
@@ -17,10 +17,10 @@ Parse the first argument after `/plan`:
 | `week` | Weekly planning ritual | Sunday afternoon, or any time you want to reset the week |
 | `morning` | Daily forward briefing + gratitude | Start of your workday |
 | `review` | Friday scorecard + closure | End of the workweek |
-| `touch` | Reactive — a new meeting request landed | Anytime the user asks "should I take this meeting?" |
+| `touch` | Reactive, a new meeting request landed | Anytime the user asks "should I take this meeting?" |
 | _(no arg)_ | Ask which mode | Default |
 
-If no arg, ask: "Which mode — week, morning, review, or touch?" Do not guess.
+If no arg, ask: "Which mode, week, morning, review, or touch?" Do not guess.
 
 ## First-run config
 
@@ -30,7 +30,7 @@ On first invocation, look for `[CWD]/.plan-prefs.md`. If it doesn't exist, walk 
 2. **Calendar account to write:** Single account where new events get created. Defaults to the first account in (1).
 3. **Timezone:** IANA name (e.g., `America/New_York`, `Europe/London`, `Asia/Tokyo`). Used for every `cal_create_event` call's `start`/`end` offset.
 4. **Working hours:** Start and end of your default workday (e.g., `09:00` to `22:00`). Maker and manager blocks fit inside this window.
-5. **Biological anchors:** Sleep window (e.g., `00:00`-`09:00`), exercise slot (e.g., `17:00`-`18:00` weekdays), meal windows (e.g., breakfast `09:30`-`10:30`, lunch `13:00`-`14:00`, dinner `18:30`-`19:30`). These are non-negotiables — booked first, every week.
+5. **Biological anchors:** Sleep window (e.g., `00:00`-`09:00`), exercise slot (e.g., `17:00`-`18:00` weekdays), meal windows (e.g., breakfast `09:30`-`10:30`, lunch `13:00`-`14:00`, dinner `18:30`-`19:30`). These are non-negotiables, booked first, every week.
 6. **To-do source (optional):** Where do your tasks live? Common patterns: a single `TODO.md`, a folder of markdown files, or none ("I'll paste tasks each session"). If a path, the skill reads it on every `/plan week`.
 7. **Bilingual support (optional):** Some calendars need event titles in different languages depending on attendee. List partner names + their preferred language (e.g., `Alex: es, Jordan: en`). When an event includes a listed partner, write the title + description in their language.
 
@@ -45,10 +45,10 @@ Save preferences to `[CWD]/.plan-prefs.md` as YAML frontmatter + a single markdo
    - Energy 4-5 (high): 70% of working hours bookable
    - Energy 3 (mid): 65%
    - Energy 2 (low): 50%, prefer recovery + light tasks
-   - Energy 1 (depleted): emergency mode — only sleep, exercise, one short maker block, meals
+   - Energy 1 (depleted): emergency mode, only sleep, exercise, one short maker block, meals
    Without an energy signal, default to 65%.
-5. **Biological anchors first.** Sleep, exercise, meals get booked before any work block. If a work block conflicts with an anchor, the anchor wins by default — surface the conflict and ask before overriding.
-6. **Maker vs manager separation.** Maker blocks (deep work) get contiguous 90-180 minute slots. Manager blocks (meetings, email, syncs) cluster into a single block per day. Don't interleave — context switches kill maker output.
+5. **Biological anchors first.** Sleep, exercise, meals get booked before any work block. If a work block conflicts with an anchor, the anchor wins by default, surface the conflict and ask before overriding.
+6. **Maker vs manager separation.** Maker blocks (deep work) get contiguous 90-180 minute slots. Manager blocks (meetings, email, syncs) cluster into a single block per day. Don't interleave, context switches kill maker output.
 7. **Implementation-intention event titles.** Format: `If [time] [day], then [action] at [location]`. Research-backed: implementation intentions roughly double follow-through vs. vague titles. Example: `If 11am Mon, then draft Q3 OKRs at desk` instead of `Draft OKRs`.
 8. **Memory durability.** Anything you want to remember across sessions (scorecards, weekly plans, adherence data) MUST be written to a vault file. In-memory is not durable across new sessions.
 9. **Zero hallucination on dates and events.** Never invent a calendar event from memory. Always call `cal_list_events` and quote what's actually on the calendar. If unsure about a date, ask.
@@ -61,7 +61,7 @@ A generic night-owl-friendly template. Adjust at first-run config to fit your ch
 |---|---|---|---|
 | (sleep window) | Sleep | Non-negotiable | Hard cutoff at the end of the day. |
 | Wake + 30min | `/plan morning` | Ritual | Gratitude + today's calendar + capacity math + top 3 priorities. |
-| Wake + 30min to + 2hr | Slow start | Flex | Breakfast, coffee, light admin. Not maker time — nervous system still booting. |
+| Wake + 30min to + 2hr | Slow start | Flex | Breakfast, coffee, light admin. Not maker time, nervous system still booting. |
 | Mid-morning, 2hr block | **MAKER #1** | Deep work | Contiguous, no meetings. Auto-reject meeting invites. |
 | 13:00-14:00 (or local lunch) | Lunch | Non-negotiable | Step away from work. |
 | Afternoon, 2-3hr | MANAGER cluster | Shallow + social | Meetings, email, syncs. Book external meetings here. |
@@ -73,7 +73,7 @@ A generic night-owl-friendly template. Adjust at first-run config to fit your ch
 
 The user can override any of this at `/plan week` approval. The template is a starting point, not the law.
 
-## WEEK FLOW — `/plan week`
+## WEEK FLOW: `/plan week`
 
 ### Purpose
 Produce a time-boxed weekly plan. Output: markdown proposal → user approval → calendar events written.
@@ -99,7 +99,7 @@ Write a markdown block (do NOT write to calendar yet) with this structure:
 ```markdown
 # Week of YYYY-MM-DD
 
-**State:** [if a signal exists, summarize] — capacity cap [%]
+**State:** [if a signal exists, summarize], capacity cap [%]
 **Context:** [any anchor events the user mentioned: travel, deadline, deliverable]
 **Exercise target:** [N] sessions. Last week: [X] sessions.
 
@@ -110,21 +110,21 @@ Write a markdown block (do NOT write to calendar yet) with this structure:
 - Rituals: morning + evening blocks
 
 ## Maker blocks
-- **MON 11:00-13:00** — If 11am Mon, then [project] [project tag]
-- **MON 19:30-22:00** — If 7:30pm Mon, then [project] [project tag]
+- **MON 11:00-13:00**: If 11am Mon, then [project] [project tag]
+- **MON 19:30-22:00**: If 7:30pm Mon, then [project] [project tag]
 - [... ~10 across the week]
 
 ## Manager clusters
-- **TUE 14:00-17:00** — Meetings cluster: [name] 2pm, [name] 3pm, slot 4pm
-- **THU 14:00-17:00** — Team sync 2pm, email triage 3pm, slot 4pm
+- **TUE 14:00-17:00**: Meetings cluster: [name] 2pm, [name] 3pm, slot 4pm
+- **THU 14:00-17:00**: Team sync 2pm, email triage 3pm, slot 4pm
 - [...]
 
 ## To-do blocks (from this week's P1s)
-- **WED 11:00-13:00** — [task] (Source: [path]:[line])
+- **WED 11:00-13:00**: [task] (Source: [path]:[line])
   - Estimate: [hrs]. Padding (planning-fallacy coefficient × estimate): [adjusted hrs]
 
 ## Aged tasks (7+ days)
-- "[task]" — [N] days old. **Schedule [slot] or drop?**
+- "[task]", [N] days old. **Schedule [slot] or drop?**
 
 ## Capacity check
 - Bookable: [N] hrs
@@ -160,7 +160,7 @@ Write a markdown block (do NOT write to calendar yet) with this structure:
 - **Aged task (14+ days):** hard schedule-or-drop prompt. No third option. Stale tasks erode trust in the system.
 - **Travel week:** prompt the user for trip timezone at start; adapt template; biological anchors stay anchored to the trip TZ.
 
-## MORNING FLOW — `/plan morning`
+## MORNING FLOW: `/plan morning`
 
 ### Purpose
 Daily forward briefing + gratitude. Check today's plan, adapt to overnight changes, surface missed blocks, kill 2-minute tasks inline.
@@ -215,10 +215,10 @@ Scan the to-do source for items tagged `[2min]` or similar. If any, propose hand
 
 **8. Weekly anchor reminder.** If today is Mon/Wed/Fri, remind of the next anchor event (deadline, presentation, travel) within 14 days.
 
-## REVIEW FLOW — `/plan review`
+## REVIEW FLOW: `/plan review`
 
 ### Purpose
-Friday scorecard + closure. Close open loops mentally before the weekend (the Zeigarnik effect — unfinished tasks intrude on rest).
+Friday scorecard + closure. Close open loops mentally before the weekend (the Zeigarnik effect, unfinished tasks intrude on rest).
 
 ### Step-by-step
 
@@ -243,17 +243,17 @@ For maker blocks, ask: "Did the block happen as planned, partial, or skipped?" R
 | Exercise | 5 | 4 | 80% |
 | Sleep (avg hours) | 8 | 7.2 | 90% |
 | Meals (skipped) | 0 | 1 | 95% |
-| **Overall** | — | — | **84%** |
+| **Overall** |, |, | **84%** |
 
 ## Wins
 - [shipped block 1]
 - [shipped block 2]
 
 ## Misses + reason
-- [missed block 1]: [reason — meeting ran over, energy crash, etc.]
+- [missed block 1]: [reason, meeting ran over, energy crash, etc.]
 
 ## Drift detected
-- [pattern — e.g., "Maker #2 missed 3x; evening blocks need shorter duration"]
+- [pattern, e.g., "Maker #2 missed 3x; evening blocks need shorter duration"]
 
 ## Adjustments for next week
 - [change to template, capacity cap, or ritual]
@@ -272,7 +272,7 @@ For maker blocks, ask: "Did the block happen as planned, partial, or skipped?" R
 
 Save to a "Friday close" log at `[CWD]/Logs/YYYY-MM-DD-friday-close.md`.
 
-## TOUCH FLOW — `/plan touch`
+## TOUCH FLOW: `/plan touch`
 
 ### Purpose
 A new meeting request landed. Decide whether to accept, propose an alternative, or decline.
@@ -307,7 +307,7 @@ Show all three. Wait for user choice.
 
 ## Why this skill exists
 
-Most planning tools live as lists. Lists don't care about time. A 14-item to-do list is the same length whether you have 8 hours or 8 days, which is why most lists never get done — they don't fit.
+Most planning tools live as lists. Lists don't care about time. A 14-item to-do list is the same length whether you have 8 hours or 8 days, which is why most lists never get done, they don't fit.
 
 This skill enforces fit. Every task either fits in a real calendar block or it doesn't get scheduled. Tasks that don't fit get triaged, dropped, or pushed. The scorecard surfaces the gap between scheduled-self and shipped-self, which is the only signal that tells you whether your planning is calibrated to your actual capacity.
 
