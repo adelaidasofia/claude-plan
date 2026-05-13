@@ -1,0 +1,15 @@
+{
+  "$schema": "https://code.claude.com/schemas/marketplace.json",
+  "name": "claude-plan",
+  "owner": {
+    "name": "Mycelium AI",
+    "url": "https://myceliumai.co"
+  },
+  "plugins": [
+    {
+      "name": "claude-plan",
+      "source": "./",
+      "description": "Temporal Agency for Claude Code. Turns your to-do list into a real, time-boxed week. Reads tasks and Google Calendar, proposes a plan that protects sleep / exercise / meals first, separates maker from manager time, and tracks scheduled-vs-shipped as a credibility scorecard."
+    }
+  ]
+}

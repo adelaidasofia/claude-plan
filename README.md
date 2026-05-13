@@ -27,7 +27,15 @@ This skill enforces fit. Tasks that fit in a real block get scheduled. Tasks tha
 
 ## Install
 
-Inside Claude Code, run:
+Open Claude Code, paste:
+
+    /plugin marketplace add adelaidasofia/claude-plan
+    /plugin install claude-plan@claude-plan
+
+<details>
+<summary>Legacy install</summary>
+
+Older versions of Claude Code (pre-marketplace):
 
 ```
 /plugin install claude-plan@adelaidasofia/claude-plan
@@ -38,6 +46,8 @@ Or clone manually:
 ```bash
 git clone https://github.com/adelaidasofia/claude-plan.git ~/.claude/plugins/claude-plan
 ```
+
+</details>
 
 ---
 
