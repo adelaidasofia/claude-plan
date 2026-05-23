@@ -1,5 +1,18 @@
 # claude-plan
 
+
+<!-- mycelium-badges:start -->
+
+<p>
+  <a href="https://github.com/adelaidasofia/claude-plan/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/adelaidasofia/claude-plan?color=blue"></a>
+  <a href="https://github.com/adelaidasofia/claude-plan/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/adelaidasofia/claude-plan?color=eab308"></a>
+  <a href="https://github.com/adelaidasofia/claude-plan/commits/main"><img alt="Last commit" src="https://img.shields.io/github/last-commit/adelaidasofia/claude-plan"></a>
+  <a href="https://github.com/adelaidasofia/claude-plan/issues"><img alt="Open issues" src="https://img.shields.io/github/issues/adelaidasofia/claude-plan"></a>
+  <a href="https://myceliumai.co"><img alt="Built by Mycelium AI" src="https://img.shields.io/badge/built_by-Mycelium_AI-15B89A"></a>
+</p>
+
+<!-- mycelium-badges:end -->
+
 A Claude Code plugin that turns your to-do list into a real, time-boxed week. Reads your tasks and Google Calendar, proposes a plan that protects sleep / exercise / meals first, separates maker from manager time, and tracks scheduled-vs-shipped as a credibility scorecard.
 
 ---
